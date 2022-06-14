@@ -31,9 +31,8 @@ public class BookServiceImpl implements BookService {
         return bookList;
     }
 
-    public int addBook(Book book) {
-
-        return 0;
+    public void addBook(Book book) {
+        bookMapper.addBook(book);
     }
 
     public int deleteBook(int id) {

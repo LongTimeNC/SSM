@@ -16,7 +16,7 @@ public interface BookService {
     public List<Book> findAll();
 
     //添加方法
-    public int addBook(Book book);
+    public void addBook(Book book);
 
     //删除方法
     public int deleteBook(int id);
