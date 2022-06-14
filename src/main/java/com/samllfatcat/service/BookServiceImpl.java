@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -22,19 +23,12 @@ import java.util.List;
 @Service("bookService")
 public class BookServiceImpl implements BookService {
 
+    @Autowired
+    private BookMapper bookMapper;
+
     public List<Book> findAll() {
-        try {
-            InputStream resourceAsStream = Resources.getResourceAsStream("mybatis-config.xml");
-            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
-            SqlSession sqlSession = sqlSessionFactory.openSession();
-            BookMapper mapper = sqlSession.getMapper(BookMapper.class);
-            List<Book> bookList = mapper.findAll();
-            sqlSession.close();
-            return bookList;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        List<Book> bookList = bookMapper.findAll();
+        return bookList;
     }
 
     public int addBook(Book book) {

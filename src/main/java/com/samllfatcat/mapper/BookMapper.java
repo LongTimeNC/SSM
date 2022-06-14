@@ -10,7 +10,6 @@ import java.util.List;
  * @Description
  * @date 2022/6/14
  */
-
 public interface BookMapper {
     //查询方法
     public List<Book> findAll();
